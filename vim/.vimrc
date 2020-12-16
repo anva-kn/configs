@@ -17,6 +17,9 @@ Plugin 'gmarik/Vundle.vim'
 " Autocomplete
 Plugin 'Valloric/YouCompleteMe'
 
+" TComment
+Plugin 'tomtom/tcomment_vim'
+
 "Stuff useful everywhere
 Plugin 'scrooloose/syntastic'
 Plugin 'preservim/nerdtree'
@@ -34,7 +37,8 @@ Plugin 'LaTeX-Box-Team/LaTeX-Box'
 " ...
 
 "Powerline
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'powerline/powerline'
+
 
 set si
 syntax on
