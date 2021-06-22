@@ -22,7 +22,7 @@ Plugin 'tomtom/tcomment_vim'
 
 "Stuff useful everywhere
 Plugin 'scrooloose/syntastic'
-Plugin 'preservim/nerdtree'
+" Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-eunuch'
 Plugin 'majutsushi/tagbar'
@@ -35,18 +35,54 @@ Plugin 'tmhedberg/SimpylFold'
 "Latex
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 " ...
+" Airline (status bar for vim like powerline)
+Plugin 'vim-airline/vim-airline'
 
-"Powerline
-Plugin 'powerline/powerline'
+" Themes for airline
+Plugin 'vim-airline/vim-airline-themes'
 
+" Better syntax highlighting
+Plugin 'sheerun/vim-polyglot'
 
 set si
 syntax on
+colorscheme deus 
+" set background=light
 set foldmethod=syntax
 set noexpandtab
 set nospell
 set si
 
+" Airline config
+let g:airline_theme='deus'
+let g:airline_powerline_fonts = 1
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.colnr = ' :'
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ' :'
+let g:airline_symbols.maxlinenr = '☰ '
+let g:airline_symbols.dirty='⚡'
+
+
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+augroup ProjectDrawer
+  autocmd!
+  autocmd VimEnter * :Vexplore
+augroup END
+
+" The below line is for enabling powerline.
+" However, it is considerably slow when compared to airline
+" set rtp+=/Users/anvarkunanbaev/Library/Python/3.8/lib/python/site-packages/powerline/bindings/vim
+" set laststatus=2
+" set t_Co=256
 
 set smartindent
 set tabstop=4
