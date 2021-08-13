@@ -14,9 +14,6 @@ Plugin 'gmarik/Vundle.vim'
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
 
-" Autocomplete
-Plugin 'Valloric/YouCompleteMe'
-
 " TComment
 Plugin 'tomtom/tcomment_vim'
 
@@ -44,17 +41,38 @@ Plugin 'vim-airline/vim-airline-themes'
 " Better syntax highlighting
 Plugin 'sheerun/vim-polyglot'
 
+" Nerdtree related stuff
+Plugin 'preservim/nerdtree' | 
+Plugin 'Xuyuanp/nerdtree-git-plugin' 
+" Plugin 'ryanoasis/vim-devicons' 
+" Plugin 'PhilRunninger/nerdtree-buffer-ops' |
+" Plugin 'PhilRunninger/nerdtree-visual-selection'
+
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 set si
 syntax on
-colorscheme deus 
+let g:afterglow_italic_comments=1
+let g:afterglow_inherit_background=1
+colorscheme afterglow
 " set background=light
 set foldmethod=syntax
 set noexpandtab
 set nospell
-set si
+
+" Kite config
+" Python
+let g:kite_supported_languages = ['python']
+
 
 " Airline config
-let g:airline_theme='deus'
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+" let g:airline_theme='afterglow'
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
@@ -65,24 +83,19 @@ let g:airline_symbols.colnr = ' :'
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ' :'
 let g:airline_symbols.maxlinenr = '☰ '
-let g:airline_symbols.dirty='⚡'
+let g:airline_symbols.dirty = '⚡'
 
-
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_winsize = 25
-augroup ProjectDrawer
-  autocmd!
-  autocmd VimEnter * :Vexplore
-augroup END
-
-" The below line is for enabling powerline.
-" However, it is considerably slow when compared to airline
-" set rtp+=/Users/anvarkunanbaev/Library/Python/3.8/lib/python/site-packages/powerline/bindings/vim
-" set laststatus=2
-" set t_Co=256
+" NERDtree config
+" Start NERDTree and put the cursor back in the other window.
+autocmd VimEnter * NERDTree | wincmd p
+let NERDTreeShowHidden=1
+let g:NERDTreeGitStatusUseNerdFonts = 1 " you should install nerdfonts by yourself. default: 0
+let g:NERDTreeGitStatusConcealBrackets = 1 " default: 0
+let g:NERDTreeWinSize=40
+" Can be enabled or disabled
+" let g:webdevicons_enable_nerdtree = 1
+set encoding=utf8
+set guifont=DroidSansMono_Nerd_Font:h11
 
 set smartindent
 set tabstop=4
@@ -92,17 +105,25 @@ set number
 set ruler
 set clipboard=unnamed
 set backspace=indent,eol,start
+nnoremap <S-L> gt
+nnoremap <C-e> $
+nnoremap <C-a> ^
+nnoremap <S-h> gT
+nnoremap <C-y> "*y
+vnoremap <C-y> "*y
+nnoremap <C-p> "*p
+vnoremap <C-p> "*p
+nnoremap <Tab> ^<Left> 
 inoremap    <buffer>  {<CR>  {<CR>}<Esc>O
 vnoremap    <buffer>  {<CR> s{<CR>}<Esc>kp=iB
-inoremap (      ()<Left>
+inoremap " ""<Left>
+inoremap ' ''<Left>
+inoremap \' \'
+inoremap ( ()<Left>
 inoremap (<CR>  (<CR>)<Esc>O
-inoremap ((     (
+inoremap (( (
 inoremap ()     ()
 inoremap [      []<Left>
 inoremap [<CR>  [<CR>]<Esc>O
 inoremap [[     [
 inoremap []     []
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
